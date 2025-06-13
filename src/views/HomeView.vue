@@ -3,10 +3,10 @@
     <div class="bg-white w-full h-full">
         <div class="relative w-full h-[600px] bg-black">
             <div class="jumbo_wrapper">
-                <h1 class="text-white montserrat font-bold text-6xl">CUE THE COLOR</h1>
+                <h1 class="text-white montserrat font-bold text-5xl">CUE THE COLOR</h1>
                 <button class="home_btn montserrat_small">Shop the collection</button>
             </div>
-            <img class="jumbo" src="/home/pic/jumbotron.jpg"
+            <img class="jumbo" src="/home/pic/j1.png"
                 alt="" />
         </div>
         <Bestseller/>
@@ -16,43 +16,45 @@
             <h3 class="text-center montserrat_medium mt-[100px] mb-[20px]">FOLLOW <br> ADALENE ON INSTAGRAM</h3>
             <a class="cormorant-italic_lg mb-[100px]" href="">@Adaleneshop</a>
             <div class="flex flex-row w-full mb-[50px]">
-                <div v-for="i in 5" :key="i" class="w-1/5 h-[280px] bg-slate-500 border">
+                <div v-for="f in fasions" :key="f.id" class="flex justify-center w-1/5 h-[280px] bg-slate-500">
+                    <img :src="f.image" alt="" class="w-full h-auto object-cover">
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="flex flex-col items-center gap-1">
-                <RouterLink to="/" class="cormorant-italic_lg">Adalene.</RouterLink>
-                <div class="flex flex-row gap-2">
-                    <img class="social" src="/home/pic/letter-f.png" alt="">
-                    <img class="social" src="/home/pic/instagram.png" alt="">
-                    <img class="social" src="/home/pic/twitter.png" alt="">
-                </div>
-                <p class="montserrat_xs mt-2">2025 Monica Inc. All rights reserved</p>
-            </div>
-            <div class="flex flex-col gap-2">
-                <h4 class="montserrat_small">CONTACT US</h4>
-                <a class="montserrat_xs" href="">adalene@gmail.com</a>
-                <a class="montserrat_xs" href="">456 Oak Avenue New York, NY 10001</a>
-                <a class="montserrat_xs" href="">+1 (555) 987-6543</a>
-            </div>
-            <div class="flex flex-col gap-2">
-                <h4 class="montserrat_small">SUBSCRIBE</h4>
-                <P class="montserrat_xs">Enter your email to get notified about <br> our new products</P>
-                <div class="relative">
-                    <input type="email" placeholder="Email" class="email montserrat_small">
-                    <img class="mail_icon" src="/home/pic/mail.png" alt="Email icon">
-                </div>
-            </div>
-        </div>
+        <Footer/>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import Header from '../components/Header.vue'
 import Bestseller from '../components/Home/BestSellers.vue';
 import Fourcol from '../components/Home/BagGrid.vue';
 import Threecol from '../components/Home/BagPageRouter.vue';
+import Footer from '../components/Footer.vue';
+
+const fasions = ref ([
+    {
+        id:'f1',
+        image:'/home/pic/f1.jpg',
+    },
+    {
+        id:'f2',
+        image:'/home/pic/f2.jpg',
+    },
+    {
+        id:'f3',
+        image:'/home/pic/f3.jpg',
+    },
+    {
+        id:'f4',
+        image:'/home/pic/f4.jpg',
+    },
+    {
+        id:'f5',
+        image:'/home/pic/f5.jpg',
+    },
+])
 </script>
 
 <style scoped>
@@ -146,21 +148,5 @@ import Threecol from '../components/Home/BagPageRouter.vue';
 
 .best_tag {
     @apply flex justify-center w-20 h-6 bg-[#B4532A]
-}
-
-.social {
-    @apply w-auto h-[30px] object-cover
-}
-
-.email{
-    @apply w-full h-8 pl-4 pr-10 py-2 bg-slate-200 focus:outline-none rounded-lg
-}
-
-.mail_icon{
-    @apply absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6
-}
-
-.footer{
-    @apply  flex flex-row justify-between bg-white w-full h-auto pt-12 pb-12 pr-20 pl-20
 }
 </style>
