@@ -1,15 +1,9 @@
 <template>
-    <div class="flex flex-col items-center w-full h-auto bg-white">
+    <div class="flex flex-col items-center w-full h-auto bg-white relative">
         <h2 class="montserrat_medium text-black mt-[100px] mb-[100px]">BEST SELLERS</h2>
-        <Carousel
-            :opts="{
-                align: 'start',
-                loop: true,
-            }"
-            class="w-full max-w-sm"
-        >
-            <CarouselContent class="-ml-4">
-                <CarouselItem v-for="bag in bags" :key="bag.id" class="md:basis-1/2 lg:basis-1/3 pl-4">
+        <div class="carousel-container">
+            <div class="carousel-slides" :style="{ transform: `translateX(-${currentSlide * 264}px)` }">
+                <div v-for="bag in bags" :key="bag.id" class="carousel-item">
                     <div class="flex flex-col grid_4">
                         <div class="flex flex-col ">
                             <div class="best_tag cormorant-italic_sm text-white rounded-lg">Best Seller</div>
@@ -20,24 +14,17 @@
                             <p class="cormorant-italic_md">${{ bag.price }}</p>
                         </div>
                     </div>
-                </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-        </Carousel>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-nav-btn prev" @click="prevSlide">&#10094;</button>
+        <button class="carousel-nav-btn next" @click="nextSlide">&#10095;</button>
         <button class="home_btn_red mt-12 mb-[100px]">Shop All Bags</button>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from '@/components/ui/carousel'
 
 const bags = ref([
     {
@@ -64,7 +51,43 @@ const bags = ref([
         price: 400,
         image: '/home/pic/b4.png'
     },
+    {
+        id: 'b5',
+        name: 'Minimalist Clutch',
+        price: 500,
+        image: '/home/pic/b5.png'
+    },
+    {
+        id: 'b6',
+        name: 'Travel Duffel Bag',
+        price: 250,
+        image: '/home/pic/b6.png'
+    },
+    {
+        id: 'b7',
+        name: 'Vintage Handbag',
+        price: 600,
+        image: '/home/pic/b7.png'
+    },
+    {
+        id: 'b8',
+        name: 'Modern Satchel',
+        price: 450,
+        image: '/home/pic/b8.png'
+    },
 ])
+
+const currentSlide = ref(0);
+const numVisibleItems = 4; // 一次顯示 4 個項目
+const maxSlideIndex = bags.value.length - numVisibleItems; // 最後一個可見項目的索引
+
+const nextSlide = () => {
+    currentSlide.value = Math.min(currentSlide.value + 1, maxSlideIndex);
+};
+
+const prevSlide = () => {
+    currentSlide.value = Math.max(currentSlide.value - 1, 0);
+};
 </script>
 
 <style scoped>
@@ -100,6 +123,43 @@ const bags = ref([
     color: #fff;
 }
 
+.carousel-container {
+    position: relative;
+    width: 1032px;
+    height: 380px;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.carousel-slides {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    width: 240px;
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #b4532a;
+    cursor: pointer;
+    z-index: 10;
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+}
+
+.carousel-nav-btn.prev {
+    left: calc(50% - 545px);
+}
+
+.carousel-nav-btn.next {
+    right: calc(50% - 545px);
+}
 
 /* tailwindcss */
 .best_tag {
