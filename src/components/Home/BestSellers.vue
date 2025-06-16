@@ -79,7 +79,7 @@ const bags = ref([
 
 const currentSlide = ref(0);
 const numVisibleItems = 4; // 一次顯示 4 個項目
-const maxSlideIndex = bags.value.length - numVisibleItems; // 最後一個可見項目的索引
+const maxSlideIndex = bags.value.length - numVisibleItems; // 最多可點多少次右箭頭
 
 const nextSlide = () => {
     currentSlide.value = Math.min(currentSlide.value + 1, maxSlideIndex);

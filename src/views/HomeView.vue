@@ -1,13 +1,12 @@
 <template>
     <Header />
     <div class="bg-white w-full h-full">
-        <div class="relative w-full h-[600px] bg-black">
+        <div class="parallax-container">
+            <div class="absolute inset-0 photo_set"></div>
             <div class="jumbo_wrapper">
                 <h1 class="text-white montserrat font-bold text-5xl">CUE THE COLOR</h1>
                 <button class="home_btn montserrat_small">Shop the collection</button>
             </div>
-            <img class="jumbo" src="/home/pic/j1.png"
-                alt="" />
         </div>
         <Bestseller/>
         <Fourcol/>
@@ -103,26 +102,35 @@ const fasions = ref ([
     color: #b4532a;
 }
 
+.photo_set{
+    background-image: url('/home/pic/j1.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    filter: brightness(0.8);
+}
+
 
 /* tailwindcss */
 .header {
-    @apply flex items-center justify-between px-6 py-2 w-full bg-white;
+    @apply flex items-center justify-between px-6 py-2 w-full bg-white
 }
 
 .iconSetting {
-    @apply w-[30px] h-auto object-cover;
+    @apply w-[30px] h-auto object-cover
 }
 
 .iconSetting:hover {
-    @apply text-gray-600;
+    @apply text-gray-600
 }
 
 .jumbo_wrapper {
-    @apply absolute inset-0 flex flex-col gap-10 items-center justify-center z-10;
+    @apply absolute inset-0 flex flex-col gap-10 items-center justify-center z-10
 }
 
-.jumbo {
-    @apply w-full h-full object-cover brightness-[0.7];
+.parallax-container {
+    @apply relative w-full h-screen
 }
 
 .home_btn {
@@ -132,7 +140,6 @@ const fasions = ref ([
 .home_btn_red {
     @apply text-[#B4532A] border border-solid border-[#B4532A] px-10 py-4 rounded-2xl duration-300
 }
-
 
 .grid_4 {
     @apply bg-[#F7F3EF] p-4 w-[240px] h-[300px] rounded-2xl

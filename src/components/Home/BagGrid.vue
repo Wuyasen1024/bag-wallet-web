@@ -9,10 +9,10 @@
                 </div>
                 <button class="view_btn opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Product</button>
             </div>
-            <div v-else-if="item.type === 'banner'" class="relative w-full h-full">
-                <img :src="item.image" alt="" class="w-full h-full object-cover brightness-[0.7]">
-                <p class="banner montserrat_lg hover:underline underline-offset-4 duration-300">{{ item.text }}</p>
-            </div>
+            <template v-else-if="item.type === 'banner'">
+                <div class="absolute inset-0 photo_set" :style="{ backgroundImage: 'url(' + item.image + ')' }"></div>
+                <p class="banner_text banner montserrat_lg hover:underline underline-offset-4 duration-300">{{ item.text }}</p>
+            </template>
         </div>
     </div>
 </template>
@@ -32,7 +32,7 @@ const pics = ref([
         id: 'b1',
         type: 'banner',
         text: 'MINI LEATHER GOODS',
-        image: '/home/pic/B1.jpg',
+        image: '/home/pic/wallet.jpg',
     },
     {
         id: 'b2',
@@ -76,7 +76,7 @@ const pics = ref([
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 12%;
+    bottom: 16%;
     width: 200px;
     height: auto;
     border: 1px solid #b4532a;
@@ -89,6 +89,14 @@ const pics = ref([
     cursor: pointer;
 }
 
+.photo_set {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: brightness(0.7);
+}
+
 /* tailwindcss */
 .grid_2 {
     @apply bg-[#F7F3EF] h-[480px]
@@ -99,6 +107,10 @@ const pics = ref([
 }
 
 .item_wrap {
-    @apply absolute inset-x-0 bottom-12 flex flex-col items-center opacity-100
+    @apply absolute inset-x-0 bottom-16 flex flex-col items-center opacity-100
+}
+
+.banner_text{
+    @apply absolute inset-0 flex items-center justify-center
 }
 </style>

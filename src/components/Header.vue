@@ -44,15 +44,15 @@ import { RouterLink } from "vue-router";
 
 /* tailwindcss */
 .header {
-    @apply flex items-center justify-between px-6 py-2 w-full bg-white;
+    @apply flex items-center justify-between px-6 py-2 w-full bg-white
 }
 
 .iconSetting {
-    @apply w-[30px] h-auto object-cover;
+    @apply w-[30px] h-auto object-cover
 }
 
 .iconSetting:hover {
-    @apply text-gray-600;
+    @apply text-gray-600
 }
 
 </style>
