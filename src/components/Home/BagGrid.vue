@@ -2,7 +2,7 @@
     <div class="grid grid-cols-2 mb-[100px]">
         <div v-for="item in pics" :key="item.id" class="grid_2 group relative">
             <div v-if="item.type === 'product'" class="flex flex-col items-center justify-center h-full">
-                <img :src="item.image" alt="" class="w-[400px] h-auto object-cover ">
+                <img :src="item.image" alt="" class="w-[400px] h-auto object-cover">
                 <div class="item_wrap group-hover:opacity-0 transition-opacity duration-300">
                     <p class="montserrat_small">{{ item.name }}</p>
                     <p class="cormorant-italic_md">${{ item.price }}</p>
