@@ -5,12 +5,14 @@
             <div class="absolute inset-0 photo_set"></div>
             <div class="jumbo_wrapper">
                 <h1 class="text-white montserrat font-bold text-5xl">CUE THE COLOR</h1>
-                <button class="home_btn montserrat_small">Shop the collection</button>
+                <router-link to="/shop" class="home_btn montserrat_small">
+                    Shop the collection
+                </router-link>
             </div>
         </div>
-        <Bestseller/>
-        <Fourcol/>
-        <Threecol/>
+        <Bestseller />
+        <Fourcol />
+        <Threecol />
         <div class="flex flex-col items-center bg-[#f6f3ef] w-full h-auto">
             <h3 class="text-center montserrat_medium mt-[100px] mb-[20px]">FOLLOW <br> ADALENE ON INSTAGRAM</h3>
             <a class="cormorant-italic_lg mb-[100px]" href="">@Adaleneshop</a>
@@ -20,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footer />
     </div>
 </template>
 
@@ -32,26 +34,26 @@ import Fourcol from '../components/Home/BagGrid.vue';
 import Threecol from '../components/Home/BagPageRouter.vue';
 import Footer from '../components/Footer.vue';
 
-const fasions = ref ([
+const fasions = ref([
     {
-        id:'f1',
-        image:'/home/pic/f1.jpg',
+        id: 'f1',
+        image: '/home/pic/f1.jpg',
     },
     {
-        id:'f2',
-        image:'/home/pic/f2.jpg',
+        id: 'f2',
+        image: '/home/pic/f2.jpg',
     },
     {
-        id:'f3',
-        image:'/home/pic/f3.jpg',
+        id: 'f3',
+        image: '/home/pic/f3.jpg',
     },
     {
-        id:'f4',
-        image:'/home/pic/f4.jpg',
+        id: 'f4',
+        image: '/home/pic/f4.jpg',
     },
     {
-        id:'f5',
-        image:'/home/pic/f5.jpg',
+        id: 'f5',
+        image: '/home/pic/f5.jpg',
     },
 ])
 </script>
@@ -102,12 +104,12 @@ const fasions = ref ([
     color: #b4532a;
 }
 
-.photo_set{
+.photo_set {
     background-image: url('/home/pic/j1.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed; 
+    background-attachment: fixed;
     filter: brightness(0.8);
 }
 

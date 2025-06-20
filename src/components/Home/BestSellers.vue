@@ -3,7 +3,7 @@
         <h2 class="montserrat_medium text-black mt-[100px] mb-[100px]">BEST SELLERS</h2>
         <div class="carousel-container">
             <div class="carousel-slides" :style="{ transform: `translateX(-${currentSlide * 264}px)` }">
-                <div v-for="bag in bags" :key="bag.id" class="carousel-item">
+                <div v-for="bag in bestSellerBags" :key="bag.id" class="carousel-item">
                     <div class="flex flex-col grid_4">
                         <div class="flex flex-col ">
                             <div class="best_tag cormorant-italic_sm text-white rounded-lg">Best Seller</div>
@@ -24,69 +24,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useProducts } from '../../data/products.js';
 
-const bags = ref([
-    {
-        id: 'b1',
-        name: 'Ember Glow Tote',
-        price: 150,
-        image: '/home/pic/b1.png'
-    },
-    {
-        id: 'b2',
-        name: 'Celestial Clutch',
-        price: 200,
-        image: '/home/pic/b2.png'
-    },
-    {
-        id: 'b3',
-        name: 'Voyager Crossbody',
-        price: 350,
-        image: '/home/pic/b3.png'
-    },
-    {
-        id: 'b4',
-        name: 'Whisperwood Satchel',
-        price: 400,
-        image: '/home/pic/b4.png'
-    },
-    {
-        id: 'b5',
-        name: 'Minimalist Clutch',
-        price: 500,
-        image: '/home/pic/b5.png'
-    },
-    {
-        id: 'b6',
-        name: 'Travel Duffel Bag',
-        price: 250,
-        image: '/home/pic/b6.png'
-    },
-    {
-        id: 'b7',
-        name: 'Vintage Handbag',
-        price: 600,
-        image: '/home/pic/b7.png'
-    },
-    {
-        id: 'b8',
-        name: 'Modern Satchel',
-        price: 450,
-        image: '/home/pic/b8.png'
-    },
-])
+const { products } = useProducts();
+
+const bestSellerBags = computed(() => products.value.filter(p => p.isBestSeller));
 
 const currentSlide = ref(0);
-const numVisibleItems = 4; // 一次顯示 4 個項目
-const maxSlideIndex = bags.value.length - numVisibleItems; // 最多可點多少次右箭頭
+const numVisibleItems = 4;
+const maxSlideIndex = computed(() => {
+    const totalBestSellers = bestSellerBags.value.length;
+    return totalBestSellers > numVisibleItems ? totalBestSellers - numVisibleItems : 0;
+});
 
 const nextSlide = () => {
-    currentSlide.value = Math.min(currentSlide.value + 1, maxSlideIndex);
+    if (maxSlideIndex.value > 0) {
+        currentSlide.value = (currentSlide.value + 1) % (maxSlideIndex.value + 1);
+    }
 };
 
 const prevSlide = () => {
-    currentSlide.value = Math.max(currentSlide.value - 1, 0);
+    if (maxSlideIndex.value > 0) {
+        currentSlide.value = (currentSlide.value - 1 + (maxSlideIndex.value + 1)) % (maxSlideIndex.value + 1);
+    }
 };
 </script>
 

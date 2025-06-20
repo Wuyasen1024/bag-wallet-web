@@ -36,7 +36,7 @@ const banners = ref([
         subtitle: 'Created in the',
         image: '/home/pic/usa.jpg',
         linkText: 'Learn our process',
-        linkPath: '/process'
+        linkPath: '/craft'
     }
 ]);
 </script>

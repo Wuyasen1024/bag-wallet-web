@@ -1,6 +1,6 @@
 <template>
     <div class="grid grid-cols-2 mb-[100px]">
-        <div v-for="item in pics" :key="item.id" class="grid_2 group relative">
+        <div v-for="item in pics" :key="item.id" :class="['grid_2 group relative', item.type === 'banner' ? bannerGridClass[item.text] : '']">
             <div v-if="item.type === 'product'" class="flex flex-col items-center justify-center h-full">
                 <img :src="item.image" alt="" class="w-[400px] h-auto object-cover">
                 <div class="item_wrap group-hover:opacity-0 transition-opacity duration-300">
@@ -18,36 +18,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useProducts } from '../../data/products.js';
+import { computed } from 'vue';
 
-const pics = ref([
-    {
-        id: 'p1',
-        type: 'product',
-        name: 'Lunafold Wallet',
-        price: 100,
-        image: '/home/pic/p1.png',
-    },
-    {
-        id: 'b1',
-        type: 'banner',
-        text: 'MINI LEATHER GOODS',
-        image: '/home/pic/wallet.jpg',
-    },
-    {
-        id: 'b2',
-        type: 'banner',
-        text: 'LEATHER BELTS',
-        image: '/home/pic/B2.jpg',
-    },
-    {
-        id: 'p2',
-        type: 'product',
-        name: 'Terra Cinch Belt',
-        price: 50,
-        image: '/home/pic/p2.png',
-    },
-]);
+const { products } = useProducts();
+const pics = computed(() => products.value.filter(p => p.type === 'product' || p.type === 'banner'));
+
+const bannerGridClass = {
+  'MINI LEATHER GOODS': 'col-start-2 row-start-1',
+  'LEATHER BELTS': 'col-start-1 row-start-2'
+};
 </script>
 
 <style scoped>

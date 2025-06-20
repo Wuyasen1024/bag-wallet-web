@@ -1,13 +1,11 @@
 <template>
     <div class="relative w-[240px]">
-        <button @click="sortOpen = !sortOpen"
-            class=" sort montserrat_small focus:outline-none"
+        <button @click="sortOpen = !sortOpen" class=" sort montserrat_small focus:outline-none"
             :class="{ 'rounded-t-md': sortOpen, 'rounded-md': !sortOpen }" type="button">
             <span class="montserrat_small">Sort by: {{ selectedSort }}</span>
             <span :class="['arrow', 'transition-transform', { '-rotate-90': !sortOpen, 'rotate-90': sortOpen }]">&#10094;</span>
         </button>
-        <div v-if="sortOpen"
-            class="sortopen">
+        <div v-if="sortOpen" class="sortopen">
             <ul>
                 <li v-for="option in sortOptions" :key="option" @click="selectSort(option)"
                     class="px-4 py-3 cursor-pointer hover:bg-gray-100 montserrat_small"
@@ -56,15 +54,15 @@ function selectSort(option) {
 }
 
 .-rotate-90 {
-  transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 
 /* tailwindcss */
-.sort{
-    @apply w-full flex justify-between items-center   px-4 py-3 bg-white text-lg
+.sort {
+    @apply w-full flex justify-between items-center px-4 py-3 bg-white text-lg
 }
 
-.sortopen{
-    @apply absolute left-0 right-0 bg-white border-2  rounded-b-md shadow-lg z-10
+.sortopen {
+    @apply absolute left-0 right-0 bg-white border-2 rounded-md shadow-lg z-10 
 }
 </style>
