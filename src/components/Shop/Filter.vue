@@ -6,8 +6,8 @@
       <button class="text-2xl font-light">−</button>
     </div>
     <div class="flex flex-col mt-4 mb-2">
-      <input type="range" min="50" max="800" v-model="minPrice" :max="maxPrice" class="w-full accent-black mb-2" />
-      <input type="range" min="50" max="800" v-model="maxPrice" :min="minPrice" class="w-full accent-black" />
+      <input type="range" min="50" max="600" v-model="minPrice" :max="maxPrice" class="w-full accent-black mb-2" />
+      <input type="range" min="50" max="600" v-model="maxPrice" :min="minPrice" class="w-full accent-black" />
     </div>
     <div class="flex justify-between text-sm text-gray-700">
       <span>${{ minPrice }}</span>
@@ -47,7 +47,7 @@
 import { ref } from 'vue'
 
 const minPrice = ref(50)
-const maxPrice = ref(800)
+const maxPrice = ref(600)
 const sizes = ref([]) // 綁定選中的尺寸
 const sizeOpen = ref(false) // 控制展開/收起
 </script>

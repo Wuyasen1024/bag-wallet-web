@@ -2,14 +2,14 @@
     <div class="relative w-[240px]">
         <button @click="sortOpen = !sortOpen" class=" sort montserrat_small focus:outline-none"
             :class="{ 'rounded-t-md': sortOpen, 'rounded-md': !sortOpen }" type="button">
-            <span class="montserrat_small">Sort by: {{ selectedSort }}</span>
+            <span class="montserrat_small">Sort by: {{ sortOption }}</span>
             <span :class="['arrow', 'transition-transform', { '-rotate-90': !sortOpen, 'rotate-90': sortOpen }]">&#10094;</span>
         </button>
         <div v-if="sortOpen" class="sortopen">
             <ul>
                 <li v-for="option in sortOptions" :key="option" @click="selectSort(option)"
                     class="px-4 py-3 cursor-pointer hover:bg-gray-100 montserrat_small"
-                    :class="{ 'bg-gray-200': selectedSort === option }">
+                    :class="{ 'bg-gray-200': sortOption === option }">
                     {{ option }}
                 </li>
             </ul>
@@ -20,6 +20,11 @@
 <script setup>
 import { ref } from 'vue'
 
+defineProps({
+  sortOption: String
+});
+const emit = defineEmits(['update-sort']);
+
 const sortOptions = [
     'Recommended',
     'Newest',
@@ -28,11 +33,11 @@ const sortOptions = [
     'Name A-Z',
     'Name Z-A'
 ]
-const selectedSort = ref(sortOptions[0])
+
 const sortOpen = ref(false)
 
 function selectSort(option) {
-    selectedSort.value = option
+    emit('update-sort', option);
     sortOpen.value = false
 }
 </script>
